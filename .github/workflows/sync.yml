@@ -8,8 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
-    
     - name: Init Build Dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -23,15 +23,15 @@ jobs:
         echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
-    - name: Clone Master
-      run: |
-        git clone -b master git@gitee.com:lxk0301/jd_scripts.git master
-    - name: Push Master
-      uses: ad-m/github-push-action@master
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
       with:
-        directory: master
+        source_repo: "git@gitee.com:lxk0301/jd_scripts.git"
+        source_branch: "master"
+        destination_branch: "master"
+        sync_tags: "true"
         github_token: ${{ secrets.PAT }}
-        branch: master
+
         
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
