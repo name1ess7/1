@@ -4,6 +4,5 @@
 > ***您使用或者复制了本仓库且本人制作的任何脚本，则视为`已接受`此声明，请仔细阅读*** 
 - [环境变量集合](./githubAction.md)
  
-- 获取cookie教程可参考：
-  + [浏览器获取cookie教程](./backUp/GetJdCookie.md)
+- + [浏览器获取cookie教程](./backUp/GetJdCookie.md)
   + [插件获取cookie教程](./backUp/GetJdCookie2.md)
