@@ -31,7 +31,7 @@ inputs:
     - timer: #宠汪汪积分兑换
         parameters:
           name: joyreward1
-          cronExpression: '0 0 0,8,12,16 * * * *'
+          cronExpression: '0 0 8,12,16 * * * *'
           enable: true
           argument: jd_joy_reward
     - timer: #宠汪汪积分兑换
