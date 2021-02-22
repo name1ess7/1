@@ -23,8 +23,8 @@ jobs:
         echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
-    - name: repo-sync
-      uses: repo-sync/github-sync@v2
+    - name: sync
+      uses: wearerequired/git-mirror-action@master
       with:
         source_repo: "git@gitee.com:lxk0301/jd_scripts.git"
         source_branch: "master"
