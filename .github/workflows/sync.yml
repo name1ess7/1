@@ -23,14 +23,15 @@ jobs:
         echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
-    - name: sync
-      uses: wearerequired/git-mirror-action@master
+    - name: Clone Master
+      run: |
+        git clone -b master git@gitee.com:lxk0301/jd_scripts.git master
+    - name: Push Master
+      uses: ad-m/github-push-action@master
       with:
-        source_repo: "git@gitee.com:lxk0301/jd_scripts.git"
-        source_branch: "master"
-        destination_branch: "master"
-        sync_tags: "true"
+        directory: master
         github_token: ${{ secrets.PAT }}
+        branch: master
 
         
     - name: Delete workflow runs
