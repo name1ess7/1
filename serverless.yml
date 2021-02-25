@@ -52,7 +52,7 @@ inputs:
           cronExpression: '0 17 0,1,5-23/1 * * * *'
           enable: true
           argument: jd_jdfactory&jd_joy_feedPets&jd_plantBean
-    - timer: #宠汪汪 #宠汪汪偷好友积分与狗
+    - timer: #宠汪汪 #宠汪汪偷好友积分与狗粮
         parameters:
           name: joy_joysteal
           cronExpression: '0 23 0,1,5-23/2 * * * *'
