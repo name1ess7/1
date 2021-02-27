@@ -70,18 +70,24 @@ inputs:
           cronExpression: '0 45 1,5-23/3 * * * *'
           enable: true
           argument: jd_speed&jd_moneyTree&jd_lotteryMachine
-    - timer: #签到 #摇京豆 #进店领豆 #京豆变动通知 #京东全民开红包 #京东赚赚 #签到领现金 #京喜签到 #点点券 #京东排行榜
+    - timer: #签到领现金 #闪购盲盒
         parameters:
-          name: beansign_clublottery_shop_beanchange_redPacket_jdzz_cash_sign_necklace_rankingList
+          name: cash_sgmh
+          cronExpression: '0 25 1,12,23 * * * *'
+          enable: true
+          argument: jd_cash&jd_sgmh
+    - timer: #签到 #摇京豆 #进店领豆 #京豆变动通知 #京东全民开红包 #京东赚赚 #京喜签到 #点点券 #京东排行榜
+        parameters:
+          name: beansign_clublottery_shop_beanchange_redPacket_jdzz_sign_necklace_rankingList
           cronExpression: '0 2 0 * * * *'
           enable: true
-          argument: jd_bean_sign&jd_club_lottery&jd_shop&jd_bean_change&jd_redPacket&jd_jdzz&jd_cash&jx_sign&jd_necklace&jd_rankingList
-    - timer: #天天提鹅 #金融养猪 #十元街 #京东快递 #京东汽车 #京东秒秒币 #领京豆额外奖励 #东东小窝 #闪购盲盒 #疯狂的joy
+          argument: jd_bean_sign&jd_club_lottery&jd_shop&jd_bean_change&jd_redPacket&jd_jdzz&jx_sign&jd_necklace&jd_rankingList
+    - timer: #天天提鹅 #金融养猪 #十元街 #京东快递 #京东汽车 #京东秒秒币 #领京豆额外奖励 #东东小窝 #疯狂的joy
         parameters:
-          name: egg_pigPet_syj_kd_car_ms_beanhome_smallhome_sgmh_crazyjoy
+          name: egg_pigPet_syj_kd_car_ms_beanhome_smallhome_crazyjoy
           cronExpression: '0 40 9 * * * *'
           enable: true
-          argument: jd_daily_egg&jd_pigPet&jd_syj&jd_kd&jd_car&jd_ms&jd_bean_home&jd_small_home&jd_sgmh&jd_crazy_joy
+          argument: jd_daily_egg&jd_pigPet&jd_syj&jd_kd&jd_car&jd_ms&jd_bean_home&jd_small_home&jd_crazy_joy
   environment: #  环境变量
     variables: #  环境变量对象
       AAA: BBB # 不要删除，用来格式化对齐追加的变量的
