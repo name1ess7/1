@@ -42,10 +42,10 @@ inputs:
           argument: jd_joy_reward
     - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场
         parameters:
-          name: bookshop_jxcfd_pet_fruit
+          name: bookshop_cfd_pet_fruit
           cronExpression: '0 8 0,8,12,16,18 * * * *'
           enable: true
-          argument: jd_bookshop&jx_cfd&jd_pet&jd_fruit
+          argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit
     - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆
         parameters:
           name: jdfactory_feedPets_plantBean
