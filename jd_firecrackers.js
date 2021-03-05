@@ -1,29 +1,28 @@
 /*
-京东家庭号
-活动入口：玩一玩-家庭号
-8000幸福值可换100京豆，一天任务做完大概300幸福值，周期较长
+她的节，享京豆
+活动入口：
+活动地址：https://linggame.jd.com/babelDiy/Zeus/3Y7JfoyA2Nwoa4FRqgDY4WpVjfgP/index.html
+一天700积分，两天1400积分换35京豆，一共8天，可换140京豆，差不多一期种豆得豆
 已支持IOS双京东账号,Node.js支持N个京东账号
-脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
-
-易黑号，建议禁用
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
-#京东家庭号
-1 12,23 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_family.js, tag=京东家庭号, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_family.png, enabled=true
+#她的节享京豆
+0 8,21 1-8/1 3 * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_firecrackers.js, tag=她的节享京豆, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "1 12,23 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_family.js,tag=京东家庭号
+cron "0 8,21 1-8/1 3 *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_firecrackers.js,tag=她的节享京豆
 
 ===============Surge=================
-京东家庭号 = type=cron,cronexp="1 12,23 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_family.js
+她的节享京豆 = type=cron,cronexp="0 8,21 1-8/1 3 *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_firecrackers.js
 
 ============小火箭=========
-京东家庭号 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_family.js, cronexpr="1 12,23 * * *", timeout=3600, enable=true
+她的节享京豆 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_firecrackers.js, cronexpr="0 8,21 1-8/1 3 *", timeout=3600, enable=true
  */
-const $ = new Env('京东家庭号');
+const $ = new Env('她的节享京豆');
 const notify = $.isNode() ? require('./sendNotify') : '';
+let notifyBean = $.isNode() ? process.env.FIRECRACKERS_NOTITY_BEAN || 0 : 0; // 账号满足兑换多少京豆时提示 默认 0 不提示，格式：120 表示能兑换 120 豆子发出通知;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
@@ -74,6 +73,7 @@ if ($.isNode()) {
   })
 
 async function jdFamily() {
+  $.earn = 0
   await getInfo()
   await getUserInfo()
   await getUserInfo(true)
@@ -81,9 +81,25 @@ async function jdFamily() {
 }
 
 function showMsg() {
-  return new Promise(resolve => {
-    // message += `本次运行获得${$.beans}京豆`
-    $.log($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
+  return new Promise(async resolve => {
+    subTitle = `【京东账号${$.index}】${$.nickName}`;
+    message += `【鞭炮🧨】本次获得 ${$.earn}，共计${$.total}\n`
+    if ($.total && notifyBean) {
+      for (let item of $.prize) {
+        if (notifyBean <= item.beansPerNum) { // 符合预定的京豆档位
+          if ($.total >= item.prizerank) { // 当前鞭炮满足兑换
+            message += `【京豆】请手动兑换 ${item.beansPerNum} 个京豆，需消耗花费🧨 ${item.prizerank}`
+            $.msg($.name, subTitle, message);
+            if ($.isNode()) {
+              await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `${subTitle}\n${message}`);
+              resolve();
+              return;
+            }
+          }
+        }
+      }
+    }
+    $.log(`${$.name}\n\n账号${$.index} - ${$.nickName}\n${subTitle}\n${message}`);
     resolve()
   })
 }
@@ -91,7 +107,7 @@ function showMsg() {
 function getInfo() {
   return new Promise(resolve => {
     $.get({
-      url: 'https://anmp.jd.com/babelDiy/Zeus/2ZpHzZdUuvWxMJT4KXuRdK6NPj3D/index.html?wxAppName=jd',
+      url: 'https://linggame.jd.com/babelDiy/Zeus/3Y7JfoyA2Nwoa4FRqgDY4WpVjfgP/index.html',
       headers: {
         Cookie: cookie
       }
@@ -117,28 +133,29 @@ function getUserInfo(info = false) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           $.userInfo = JSON.parse(data.match(/query\((.*)\n/)[1])
-          console.log(`当前幸福值：${$.userInfo.tatalprofits}`)
           if (info) {
-            message += `当前幸福值：${$.userInfo.tatalprofits}`
-          } else for (let task of $.info.config.tasks) {
-            let vo = $.userInfo.tasklist.filter(vo => vo.taskid === task['_id'])
-            if (vo.length > 0) {
-              vo = vo[0]
-              // 5fed97ce5da81a8c069810df 健身 2 9 3
-              // 5fed97ce5da81a8c069810de 撸猫 80 6 1
-              // 5fed97ce5da81a8c069810dd 做美食 40 10 2
-              // 5fed97ce5da81a8c069810dc 去组队 150 13 5
-              if (vo['isdo'] === 1) {
-                if (vo['times'] === 0) {
-                  console.log(`去做任务${task['_id']}`)
-                  await doTask(task['_id'])
-                  await $.wait(1000)
-                } else {
-                  console.log(`${Math.trunc(vo['times'] / 60)}分钟可后做任务${task['_id']}`)
+            $.earn = $.userInfo.tatalprofits - $.total
+          } else {
+            for (let task of $.info.config.tasks) {
+              let vo = $.userInfo.tasklist.filter(vo => vo.taskid === task['_id'])
+              if (vo.length > 0) {
+                vo = vo[0]
+                if (vo['isdo'] === 1) {
+                  if (vo['times'] === 0) {
+                    console.log(`去做任务${task['_id']}`)
+                    let res = await doTask(task['_id'])
+                    if (!res) { // 黑号，不再继续执行任务
+                      break;
+                    }
+                    await $.wait(3000)
+                  } else {
+                    console.log(`${Math.trunc(vo['times'] / 60)}分钟可后做任务${task['_id']}`)
+                  }
                 }
               }
             }
           }
+          $.total = $.userInfo.tatalprofits
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -158,9 +175,14 @@ function doTask(taskId) {
           console.log(`${err},${jsonParse(resp.body)['message']}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          data = JSON.parse(data.match(/query\((.*)\n/)[1])
+          let res = data.match(/query\((.*)\n/)[1];
+          data = JSON.parse(res);
           if (data.ret === 0) {
             console.log(`任务完成成功`)
+          } else if (data.ret === 1001) {
+            console.log(`任务完成失败，原因：这个账号黑号了！！！`)
+            resolve(false);
+            return;
           } else {
             console.log(`任务完成失败，原因未知`)
           }
@@ -175,7 +197,7 @@ function doTask(taskId) {
 }
 
 function taskUrl(function_id, body = '') {
-  body = `activeid=${$.info.activeId}&token=${$.info.actToken}&sceneval=2&shareid=&t=${Date.now()}&_=${new Date().getTime()}&callback=query&${body}`
+  body = `activeid=${$.info.activeId}&token=${$.info.actToken}&sceneval=2&shareid=&_=${new Date().getTime()}&callback=query&${body}`
   return {
     url: `https://wq.jd.com/activep3/family/${function_id}?${body}`,
     headers: {
