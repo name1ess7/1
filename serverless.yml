@@ -88,6 +88,12 @@ inputs:
           cronExpression: '0 50 12 * * * *'
           enable: true
           argument: jd_jxd
+    - timer: #joyrun
+        parameters:
+          name: joyrun
+          cronExpression: '0 5 9,12 * * * *'
+          enable: true
+          argument: jd_joy_run
     - timer: #签到 #摇京豆 #进店领豆 #京豆变动通知 #京东全民开红包 #京东赚赚 #京喜签到 #点点券 #京东排行榜
         parameters:
           name: beansign_clublottery_shop_beanchange_redPacket_jdzz_sign_necklace_rankingList
