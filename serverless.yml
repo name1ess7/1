@@ -85,7 +85,7 @@ inputs:
     - timer: #京小兑
         parameters:
           name: jxd
-          cronExpression: '0 50 12 * * * *'
+          cronExpression: '0 50 12,16 * * * *'
           enable: true
           argument: jd_jxd
     - timer: #joyrun
