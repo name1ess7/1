@@ -13,6 +13,7 @@ jobs:
       JD_USER_AGENT: ${{ secrets.JD_USER_AGENT}}
       TENCENTSCF_SOURCE_TYPE: ${{ secrets.TENCENTSCF_SOURCE_TYPE}}
       TENCENTSCF_SOURCE_URL: ${{ secrets.TENCENTSCF_SOURCE_URL}}
+      TZ: ${{ secrets.TZ}}
       PUSH_KEY: ${{ secrets.PUSH_KEY}}
       BARK_PUSH: ${{ secrets.BARK_PUSH}}
       BARK_SOUND: ${{ secrets.BARK_SOUND}}
@@ -99,6 +100,7 @@ jobs:
           if [ $JD_USER_AGENT ]; then sed -i "/variables/a\      JD_USER_AGENT: $JD_USER_AGENT" serverless.yml; fi;
           if [ $TENCENTSCF_SOURCE_TYPE ]; then sed -i "/variables/a\      TENCENTSCF_SOURCE_TYPE: $TENCENTSCF_SOURCE_TYPE" serverless.yml; fi;
           if [ $TENCENTSCF_SOURCE_URL ]; then sed -i "/variables/a\      TENCENTSCF_SOURCE_URL: $TENCENTSCF_SOURCE_URL" serverless.yml; fi;
+          if [ $TZ ]; then sed -i "/variables/a\      TZ: $TZ" serverless.yml; fi;
           if [ $PUSH_KEY ]; then sed -i "/variables/a\      PUSH_KEY: $PUSH_KEY" serverless.yml; fi;
           if [ $BARK_PUSH ]; then sed -i "/variables/a\      BARK_PUSH: $BARK_PUSH" serverless.yml; fi;
           if [ $BARK_SOUND ]; then sed -i "/variables/a\      BARK_SOUND: $BARK_SOUND" serverless.yml; fi;
