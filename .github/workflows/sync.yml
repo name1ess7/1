@@ -31,7 +31,7 @@ jobs:
     - name: Push
       uses: ad-m/github-push-action@master
       with:
-        directory: master
+        directory: sync
         github_token: ${{ secrets.PAT }}
         branch: master
 
