@@ -60,7 +60,7 @@ const JD_API_HOST = 'https://jdjoy.jd.com';
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
-      $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
       $.index = i + 1;
       $.isLogin = true;
       $.nickName = '' || $.UserName;
@@ -127,7 +127,7 @@ async function joyReward() {
       }
       console.log(`\ndebug场次:${giftSaleInfos}\n`)
       for (let item of data[giftSaleInfos]) {
-        console.log(`${item['giftName']}当前库存:${item['leftStock']}`)
+        console.log(`${item['giftName']}当前库存:${item['leftStock']}，id：${item.id}`)
         if (item.giftType === 'jd_bean' && item['giftValue'] === rewardNum) {
           saleInfoId = item.id;
           leftStock = item.leftStock;
