@@ -64,12 +64,12 @@ inputs:
           cronExpression: '0 30 0,1,5-23/2 * * * *'
           enable: true
           argument: jd_superMarket
-    - timer: #京东天天加速 #摇钱树 #京东抽奖机
+    - timer: #京东天天加速 #京东抽奖机
         parameters:
-          name: speed_moneyTree_lotteryMachine
+          name: speed_lotteryMachine
           cronExpression: '0 45 1,5-23/3 * * * *'
           enable: true
-          argument: jd_speed&jd_moneyTree&jd_lotteryMachine
+          argument: jd_speed&jd_lotteryMachine
     - timer: #签到领现金 #闪购盲盒
         parameters:
           name: cash_sgmh
@@ -94,6 +94,12 @@ inputs:
           cronExpression: '0 5 9,12 * * * *'
           enable: true
           argument: jd_joy_run
+    - timer: #摇钱树
+        parameters:
+          name: moneyTree
+          cronExpression: '0 55 1,5-23/3 * * * *'
+          enable: true
+          argument: jd_moneyTree
     - timer: #签到 #摇京豆 #进店领豆 #京豆变动通知 #京东全民开红包 #京东赚赚 #京喜签到 #点点券 #京东排行榜
         parameters:
           name: beansign_clublottery_shop_beanchange_redPacket_jdzz_sign_necklace_rankingList
