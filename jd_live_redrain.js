@@ -2,6 +2,7 @@
 超级直播间红包雨
 下一场超级直播间时间:04月28日  20:00，直播间地址：https://h5.m.jd.com/dev/3pbY8ZuCx4ML99uttZKLHC2QcAMn/live.html?id=3932303
 下一场超级直播间时间:04月23日  20:00，直播间地址：https://h5.m.jd.com/dev/3pbY8ZuCx4ML99uttZKLHC2QcAMn/live.html?id=3934999
+
 脚本兼容: Quantumult X, Surge, Loon, JSBox, Node.js
 ==============Quantumult X==============
 [task_local]
