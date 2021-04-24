@@ -40,18 +40,18 @@ inputs:
           cronExpression: '0 0 0 * * * *'
           enable: true
           argument: jd_joy_reward
-    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场
+    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场 #东东健康社区
         parameters:
-          name: bookshop_cfd_pet_fruit
-          cronExpression: '0 8 0,8,12,16,18 * * * *'
+          name: bookshop_cfd_pet_fruit_health
+          cronExpression: '0 8 0,8,12,16,20 * * * *'
           enable: true
-          argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit
-    - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆
+          argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit&jd_health
+    - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆 #东东健康社区收集能量
         parameters:
-          name: jdfactory_feedPets_plantBean
+          name: jdfactory_feedPets_plantBean_healthcollect
           cronExpression: '0 17 0,1,5-23/1 * * * *'
           enable: true
-          argument: jd_jdfactory&jd_joy_feedPets&jd_plantBean
+          argument: jd_jdfactory&jd_joy_feedPets&jd_plantBean&jd_health_collect
     - timer: #宠汪汪
         parameters:
           name: joy
@@ -64,12 +64,12 @@ inputs:
           cronExpression: '0 30 0,1,5-23/2 * * * *'
           enable: true
           argument: jd_superMarket
-    - timer: #京东天天加速 #京东抽奖机
+    - timer: #京东抽奖机
         parameters:
-          name: speed_lotteryMachine
+          name: lotteryMachine
           cronExpression: '0 45 1,5-23/3 * * * *'
           enable: true
-          argument: jd_speed&jd_lotteryMachine
+          argument: jd_lotteryMachine
     - timer: #签到领现金 #闪购盲盒
         parameters:
           name: cash_sgmh
