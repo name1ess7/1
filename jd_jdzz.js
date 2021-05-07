@@ -92,6 +92,7 @@ async function jdWish() {
   $.hasOpen = false;
   $.assistStatus = 0;
   await getTaskList(true)
+
   await helpFriends()
   await getUserInfo()
   $.nowBean = parseInt($.totalBeanNum)
