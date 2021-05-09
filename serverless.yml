@@ -88,12 +88,6 @@ inputs:
           cronExpression: '0 50 8,12,18 * * * *'
           enable: true
           argument: jd_live
-    - timer: #京小兑
-        parameters:
-          name: jxd
-          cronExpression: '0 50 12,16 * * * *'
-          enable: true
-          argument: jd_jxd
     - timer: #joyrun
         parameters:
           name: joyrun
