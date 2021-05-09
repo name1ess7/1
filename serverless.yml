@@ -46,18 +46,24 @@ inputs:
           cronExpression: '0 17 0,1,5-23/1 * * * *'
           enable: true
           argument: jd_health_collect
-    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场 #东东健康社区
+    - timer: #东东健康社区
+        parameters:
+          name: health
+          cronExpression: '0 45 0,8,12,16,20 * * * *'
+          enable: true
+          argument: jd_health
+    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场
         parameters:
           name: bookshop_cfd_pet_fruit
           cronExpression: '0 8 0,8,12,16,20 * * * *'
           enable: true
           argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit
-    - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆
+    - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆 #十元街
         parameters:
-          name: jdfactory_feedPets_plantBean
-          cronExpression: '0 17 0,1,5-23/1 * * * *'
+          name: jdfactory_feedPets_plantBean_syj
+          cronExpression: '0 12 0,1,5-23/1 * * * *'
           enable: true
-          argument: jd_jdfactory&jd_joy_feedPets&jd_plantBean
+          argument: jd_jdfactory&jd_joy_feedPets&jd_plantBean&jd_syj
     - timer: #宠汪汪
         parameters:
           name: joy
@@ -112,12 +118,12 @@ inputs:
           cronExpression: '0 2 0 * * * *'
           enable: true
           argument: jd_bean_sign&jd_club_lottery&jd_shop&jd_bean_change&jd_redPacket&jd_jdzz&jx_sign&jd_necklace&jd_rankingList
-    - timer: #天天提鹅 #金融养猪 #十元街 #京东快递 #京东汽车 #京东秒秒币 #领京豆额外奖励 #东东小窝 #疯狂的joy
+    - timer: #天天提鹅 #金融养猪 #京东快递 #京东汽车 #京东秒秒币 #领京豆额外奖励 #东东小窝 #疯狂的joy
         parameters:
-          name: egg_pigPet_syj_kd_car_ms_beanhome_smallhome_crazyjoy
+          name: egg_pigPet_kd_car_ms_beanhome_smallhome_crazyjoy
           cronExpression: '0 40 9 * * * *'
           enable: true
-          argument: jd_daily_egg&jd_pigPet&jd_syj&jd_kd&jd_car&jd_ms&jd_bean_home&jd_small_home&jd_crazy_joy
+          argument: jd_daily_egg&jd_pigPet&jd_kd&jd_car&jd_ms&jd_bean_home&jd_small_home&jd_crazy_joy
   environment: #  环境变量
     variables: #  环境变量对象
       AAA: BBB # 不要删除，用来格式化对齐追加的变量的
