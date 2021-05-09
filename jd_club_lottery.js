@@ -491,6 +491,10 @@ function welcomeHome() {
                   $.superShakeUrl = jump.params.url;//有活动链接，但活动可能已过期，需做进一步判断
                   console.log(`【超级摇一摇】活动链接：${jump.params.url}`);
                 }
+              } else if (data['data']['bizCode'] === "TK1703") {
+                console.log(`超级摇一摇 抽奖失败：${data['data']['bizMsg']}`);
+              } else {
+                console.log(`超级摇一摇 抽奖失败：${data['data']['bizMsg']}`);
               }
               if (shakeFloorNew && shakeFloorNew2) {
                 const jump = shakeFloorNew2['jump'];
