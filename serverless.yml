@@ -31,13 +31,7 @@ inputs:
     - timer: #宠汪汪积分兑换
         parameters:
           name: joyreward1
-          cronExpression: '0 0 8,12,16 * * * *'
-          enable: true
-          argument: jd_joy_reward
-    - timer: #宠汪汪积分兑换
-        parameters:
-          name: joyreward2
-          cronExpression: '0 0 0 * * * *'
+          cronExpression: '0 0 0,8,12,16 * * * *'
           enable: true
           argument: jd_joy_reward
     - timer: #东东健康社区收集能量
@@ -52,12 +46,12 @@ inputs:
           cronExpression: '0 45 0,8,12,16,20 * * * *'
           enable: true
           argument: jd_health
-    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场
+    - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场 #每日抽奖
         parameters:
-          name: bookshop_cfd_pet_fruit
+          name: bookshop_cfd_pet_fruit_dailylottery
           cronExpression: '0 8 0,8,12,16,20 * * * *'
           enable: true
-          argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit
+          argument: jd_bookshop&jd_cfd&jd_pet&jd_fruit&jd_daily_lottery
     - timer: #东东工厂 #宠汪汪喂食 #京东种豆得豆 #十元街
         parameters:
           name: jdfactory_feedPets_plantBean_syj
