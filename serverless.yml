@@ -34,18 +34,6 @@ inputs:
           cronExpression: '0 0 0,8,12,16 * * * *'
           enable: true
           argument: jd_joy_reward
-    - timer: #东东健康社区收集能量
-        parameters:
-          name: healthcollect
-          cronExpression: '0 17 0,1,5-23/1 * * * *'
-          enable: true
-          argument: jd_health_collect
-    - timer: #东东健康社区
-        parameters:
-          name: health
-          cronExpression: '0 45 0,8,12,16,20 * * * *'
-          enable: true
-          argument: jd_health
     - timer: #口袋书店 #财富岛 #东东萌宠 #东东农场 #每日抽奖
         parameters:
           name: bookshop_cfd_pet_fruit_dailylottery
